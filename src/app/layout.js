@@ -1,17 +1,17 @@
-// app/layout.js
+// src/app/layout.js
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SessionProviderWrapper from "./SessionProviderWrapper";
 import Navbar from "./components/Navbar";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
+  variable: "--font-geist-sans",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  variable: "--font-geist-mono",
 });
 
 export const metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SessionProviderWrapper>
           <Navbar />
-          <div className="pt-20">{children}</div> {/* padding so content not hidden */}
+          <main className="pt-20">{children}</main>
         </SessionProviderWrapper>
       </body>
     </html>

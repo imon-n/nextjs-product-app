@@ -11,7 +11,8 @@ export default function AddProductPage({ onAdd }) {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
-  if (status === "loading") return <p className="text-center mt-20">Loading...</p>;
+  if (status === "loading")
+    return <p className="text-center mt-20">Loading...</p>;
   if (!session) {
     router.push("/login");
     return null;
@@ -32,7 +33,7 @@ export default function AddProductPage({ onAdd }) {
       setName("");
       setDescription("");
       setPrice("");
-      if (onAdd) onAdd(newProduct); // notify parent
+      if (onAdd) onAdd(newProduct);
       router.push("/products");
     } else {
       const data = await res.json();
@@ -41,48 +42,54 @@ export default function AddProductPage({ onAdd }) {
   };
 
   return (
-    <div className="flex justify-center items-start min-h-screen bg-gray-100 pt-24 px-4">
-      <div className="w-full max-w-lg bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Add New Product</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+    <div className="flex justify-center items-start min-h-screen bg-gray-50 pt-20 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8 sm:p-10">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-6 text-center text-gray-800">
+          Add New Product
+        </h1>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">Product Name</label>
+            <label className="mb-2 font-medium text-gray-700">
+              Product Name
+            </label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter product name"
-              className="border rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">Description</label>
+            <label className="mb-2 font-medium text-gray-700">
+              Description
+            </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter product description"
-              className="border rounded-md p-3 h-32 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+              className="border border-gray-300 rounded-lg p-3 h-32 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none transition"
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">Price ($)</label>
+            <label className="mb-2 font-medium text-gray-700">Price ($)</label>
             <input
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price"
               type="number"
               min="0"
-              className="border rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 transition text-white font-semibold py-3 rounded-md shadow-md"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 rounded-xl shadow-lg transition transform hover:scale-105"
           >
             Add Product
           </button>
